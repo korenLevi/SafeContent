@@ -1,0 +1,26 @@
+body {
+    background-color: lightblue;
+}
+
+.signIn {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* width: 200px;
+    height: 25px; */
+    position: absolute;
+}
+
+input {
+    display: block;
+    width: 200px;
+    height: 25px;
+    border-color: black;
+    
+}
+button {
+    display: block;
+    width: 210px;
+    height: 25px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(2, 228, 21);
+}
