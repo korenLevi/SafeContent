@@ -1,5 +1,5 @@
 'use strict'
-
+var gUserIdx = 104;
 var gUsers = [{
         id: 'u101',
         username: 'puki',
@@ -26,14 +26,11 @@ function init() {
     saveToStorage('usersDB', gUsers);
 }
 
-function renderSignIn() {
-
-}
 // loginTry()
 function loginTry() {
     const users = loadFromStorage('usersDB');
-    const elUserName = document.getElementById('userName');
-    const elPassword = document.getElementById('password');
+    const elUserName = document.querySelector('.userName');
+    const elPassword = document.querySelector('.password');
     const user = doLogin(elUserName.value, elPassword.value);
     console.log('elUserName', elUserName.value);
     // const user = gUsers.find(user => user.username === elUserName.value);
@@ -44,7 +41,8 @@ function loginTry() {
     user.lastLoginTime = new Date();
     saveToStorage('loggedinUser' , user);
     if(!user.isAdmin) window.location = 'content.html';
-    window.location = 'admin.html'
+    else window.location = 'admin.html'
+    
 
 }
 
@@ -52,6 +50,33 @@ function signedIn() {
     const user = loadFromStorage('loggedinUser');
     window.location = 'content.html'
 
+}
+
+function signUp() {
+    const users = loadFromStorage('usersDB');
+    const elUserName = document.querySelector('.userName');
+    const elPassword = document.querySelector('.password');
+    if(checkUserName(elUserName.value, elPassword.value))return;
+    const user = createNewUser(elUserName.value, elPassword.value);
+
+    alert('sign up success')
+    // saveToStorage('loggedinUser' , user);
+    
+   
+}
+
+function createNewUser( UserName , password) {
+
+   const user =  {
+        id: 'u' + ++gUserIdx,
+        username: UserName,
+        password: password,
+        lastLoginTime: new Date(),
+        isAdmin: false
+    }
+    gUsers.push(user);
+    saveToStorage('usersDB', gUsers);
+    return user;
 }
 
 

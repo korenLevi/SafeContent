@@ -9,3 +9,7 @@ function saveToStorage(key, val) {
     const json = JSON.stringify(val)
     localStorage.setItem(key, json)
 }
+
+function removeFromStorage(key) {
+   localStorage.removeItem(key);
+}

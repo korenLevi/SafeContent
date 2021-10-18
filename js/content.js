@@ -21,3 +21,9 @@ function init2() {
 function addData(data,txt) {
     gStrHtml+= `<li>${data} - ${txt}</li>`
 }
+
+function logOut() {
+    window.location = 'index.html'
+    removeFromStorage('loggedinUser')
+
+}
